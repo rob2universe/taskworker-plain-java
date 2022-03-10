@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  taskworkerlogs:
+    container_name: taskworker-java-logs
+    image: io.camunda/example/taskworker-plain-java
+    environment:
+     - jobType=log
+     - ZEEBE_CLUSTER_ID=${ZEEBE_CLUSTER_ID}
+     - ZEEBE_CLIENT_ID=${ZEEBE_CLIENT_ID}
+     - ZEEBE_CLIENT_SECRET=${ZEEBE_CLIENT_SECRET}
+     - zeebe.client.worker.defaultName=taskworker-log1
+
+  # taskworkerwrite:
+  #   container_name: taskworker-java-write
+  #   image: io.camunda/example/taskworker-plain-java
+  #   build:
+  #     context: ./
+  #     dockerfile: Dockerfile
+  #   environment:
+  #    - logging.level.root=info
+  #    - jobType=write
+  #    - zeebe.client.cloud.clusterId=${ZEEBE_CLUSTER_ID}
+  #    - zeebe.client.cloud.clientId=${ZEEBE_CLIENT_ID}
+  #    - zeebe.client.cloud.clientSecret=${ZEEBE_CLIENT_SECRET}
+  #    - zeebe.client.worker.defaultName=taskworker-write1
+
